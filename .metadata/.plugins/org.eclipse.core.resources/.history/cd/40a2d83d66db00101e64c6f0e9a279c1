@@ -1,0 +1,15 @@
+package com.sunbeam.quiz.service;
+
+import java.sql.SQLException;
+
+import com.sunbeam.quiz.dao.StudentDao;
+
+public class StudentService {
+	public void diaplayStudents() throws Exception {
+	try(StudentDao studentDao=new StudentDao()){
+		
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	}
+}

@@ -2,11 +2,15 @@ package com.sunbeam.quiz.menu;
 
 import java.util.Scanner;
 
+import com.sunbeam.quiz.service.StudentService;
+
 public class Menu {
 	Scanner sc=new Scanner(System.in);
+	private static StudentService studentService=new StudentService();
 	
 	private static int menuOptions(Scanner sc) {
-	
+		
+		
 		System.out.println("0.Exit");
 		System.out.println("1.Display Students");
 		System.out.println("2.Add Student");
@@ -17,26 +21,26 @@ public class Menu {
 		return sc.nextInt();
 	}
 	
-	public static void menu(Scanner sc) {
+	public static void menu(Scanner sc) throws Exception {
 		int choice;
 		
 		while((choice=menuOptions(sc))!=0) {
 	
 		switch(choice) {
 		case 1:
-			//getAllStudent();
+			studentService.displayStudents();
 			break;
 		case 2:
-			//addStudents(sc);
+			studentService.addStudent(sc);
 			break;
 		case 3:
-			//updateStudent(sc);
+			studentService.updateStudent(sc);
 			break;
 		case 4:
-			//deleteStudent(sc);
+			studentService.removeStudent(sc);
 			break;
 		default:
-			//System.out.println("Wrong Choice");
+			System.out.println("Wrong Choice");
 		}
 		}
 }}

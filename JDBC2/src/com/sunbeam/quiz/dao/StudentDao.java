@@ -55,6 +55,22 @@ public class StudentDao implements AutoCloseable {
 			updateStatement.executeUpdate();
 		}
 	}
+	public void updateStudent1(int rollno,String name) throws SQLException {
+		String sql="UPDATE students SET name=? WHERE rollno=?";
+		try(PreparedStatement updateStatement=connection.prepareStatement(sql)){
+			updateStatement.setString(1, name);
+			updateStatement.setInt(2, rollno);
+			updateStatement.executeUpdate();
+		}
+	}
+	public void updateStudent2(int rollno,String email) throws SQLException {
+		String sql="UPDATE students SET email=? WHERE rollno=?";
+		try(PreparedStatement updateStatement=connection.prepareStatement(sql)){
+			updateStatement.setString(1, email);
+			updateStatement.setInt(2, rollno);
+			updateStatement.executeUpdate();
+		}
+	}
 	public void deleteStudent(int rollno) throws SQLException {
 		String sql="DELETE FROM students WHERE rollno=?";
 		try(PreparedStatement deleteStatement=connection.prepareStatement(sql)){

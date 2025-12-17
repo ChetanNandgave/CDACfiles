@@ -1,4 +1,4 @@
-/*package demo2;
+package demo2;
 import java.util.Scanner;
 
 public class WideNarrow {
@@ -11,4 +11,4 @@ public class WideNarrow {
 		i1.display();
 	}
 
-}*/
+}

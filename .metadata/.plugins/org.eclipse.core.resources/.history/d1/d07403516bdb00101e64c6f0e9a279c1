@@ -1,0 +1,112 @@
+package com.sunbeam.quiz.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Scanner;
+
+import com.sunbeam.quiz.dao.StudentDao;
+import com.sunbeam.quiz.entity.Student;
+
+public class StudentService {
+	public void displayStudents() throws Exception {
+	try(StudentDao studentDao=new StudentDao()){
+		List<Student> studentList=studentDao.getAllStudents();
+		for(Student student:studentList) {
+			System.out.println("****************************");
+			System.out.println("Rollno - " + student.getRollno());
+			System.out.println("Name - " + student.getName());
+			System.out.println("Course - " + student.getCourse());
+			System.out.println("****************************");
+		}
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	}
+	public void addStudent(Scanner sc) throws Exception {
+		Student student=new Student();
+		System.out.println("Enter the Name:");
+		student.setName(sc.next());
+		System.out.println("Enter the email:");
+		student.setEmail(sc.next());
+		System.out.println("Enter the course:");
+		student.setCourse(sc.next());
+		try(StudentDao studentDao=new StudentDao()){
+			studentDao.insertStudent(student);
+			System.out.println("Student added Successfuly");
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void updateStudent(Scanner sc) throws Exception {
+		int choice;
+		
+		do {
+			System.out.println("0.Exit");
+			System.out.println("1.Update course");
+			System.out.println("2.Update name");
+			System.out.println("3.Update email");
+			
+			System.out.println("Enter choice:");
+			 choice=sc.nextInt();
+			
+			switch(choice) {
+				case 1:
+					System.out.println("Enter the rollno:");
+					int rollno=sc.nextInt();
+					System.out.println("Enter the new Course:");
+					String course=sc.next();
+					try(StudentDao studentDao=new StudentDao()){
+						studentDao.updateStudent(rollno,course);
+						System.out.println("Student Uodated Successfully!!");
+						
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+					break;
+				case 2:
+					System.out.println("Enter Student rollno:");
+					int rollno1=sc.nextInt();
+					System.out.println("Enter New name of Student:");
+					String name=sc.next();
+					
+					try(StudentDao studentDao=new StudentDao()){
+						studentDao.updateStudent1(rollno1, name);
+						System.out.println("Student name Updated Scussefully");
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+					break;
+				case 3:
+					System.out.println("Enter Student rollno:");
+					int rollno2=sc.nextInt();
+					System.out.println("Enter New Course of Student:");
+					String email=sc.next();
+					try(StudentDao studentDao=new StudentDao()){
+						studentDao.updateStudent2(rollno2, email);
+						System.out.println("Email is Successfulyy Updated");
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+					break;
+				default:
+					System.out.println("Wrong choice");
+			}
+		}while(choice!=0);
+		
+		
+	}
+	public void removeStudent(Scanner sc) throws Exception {
+		System.out.println("Enter the rollno");
+		int rollno=sc.nextInt();
+		try(StudentDao studentDao=new StudentDao()){
+			studentDao.deleteStudent(rollno);
+			System.out.println("Student Deleted Successfully!!!");
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
