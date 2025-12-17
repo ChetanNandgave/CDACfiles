@@ -1,0 +1,10 @@
+package com.sunbeam.menu;
+
+import java.util.Scanner;
+
+public class StudentMenu {
+	private static int studentMenuOptions(Scanner sc) {
+		return sc.nextInt();
+	}
+
+}

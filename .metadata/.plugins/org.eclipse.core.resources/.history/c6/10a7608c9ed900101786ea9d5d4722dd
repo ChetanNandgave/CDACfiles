@@ -1,0 +1,11 @@
+package com.sunbeam.menu;
+
+
+
+public class MainMenu {
+	public static int mainMenu(Scanner sc) {
+		return 0;
+		
+	}
+
+}

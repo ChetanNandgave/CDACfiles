@@ -1,0 +1,89 @@
+package com.sunbeam.menu;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class MainMenu {
+	
+	private static final String URL="jdbc:mysql//loacalhost:3306/users";
+	private static final String USERNAME="root";
+	private static final String PASSWORD="manager";
+	
+	public static Connection getConnection() throws SQLException {
+		return DriverManager.getConnection( URL,USERNAME,PASSWORD);
+	}
+	
+	public static int mainMenuOptions(Scanner sc) {
+		System.out.println("***********MainMenu*************");
+		System.out.println("0.EXIT");
+		System.out.println("1.Admin Login");
+		System.out.println("2.Student Register");
+		System.out.println("3.Student Login ");
+		return sc.nextInt();
+		
+		
+		
+	}
+	public static void mainMenu(Scanner sc) {
+		
+		int choice;
+		while((choice=mainMenuOptions(sc))!=0) {
+			switch(choice) {
+		
+			case 1:
+				System.out.println("You have selected Admin Login");
+				System.out.println("Enter the Admin Username:");
+				String Username=sc.next();
+				System.out.println("Enter the Password");
+				String Password=sc.next();
+				String Role="Admin";
+				String sql="SELECT*FROM users WHERE name=? AND password_hash=? AND role=?";
+				try {
+				Connection connection=getConnection();
+				PreparedStatement adminLogin=connection.prepareStatement(sql);
+				adminLogin.setString(1, Username);
+				adminLogin.setString(2, Password);
+				adminLogin.setString(3, Role);
+				ResultSet rs=adminLogin.executeQuery();
+				if(rs.next()) {
+					int user_id=rs.getInt(1);
+					String name=rs.getString(2);
+					String email=rs.getString(3);
+					String role=rs.getString(5);
+					System.out.println(user_id+"-"+name+"-"+email+"-"+role);
+					System.out.println("Login Succesfull");
+					System.out.println();
+				}
+				else {
+					System.out.println("Login Failed");
+					System.out.println();
+					
+				}
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+				
+				
+				
+					AdminMenu.adminMenu(sc);
+				
+				break;
+			case 2:
+				System.out.println("You have selected Student Register");
+				break;
+			case 3:
+				System.out.println("You have selected student login");
+				StudentMenu.studentMenu(sc);
+				break;
+			default:
+				System.out.println("Wrong choice");
+				break;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,17 @@
+package calci;
+
+class Student{
+	String name;
+	int marks;
+	int Rollno;
+	
+}
+
+public class calMarks {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

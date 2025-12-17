@@ -1,0 +1,36 @@
+package com.sunbeam.quiz.menu;
+
+import java.util.Scanner;
+
+public class Menu {
+	Scanner sc=new Scanner(System.in);
+	
+	
+	
+		System.out.println("0.Exit");
+		System.out.println("1.Display Students");
+		System.out.println("2.Add Student");
+		System.out.println("3.Update Student");
+		System.out.println("4.Delete Student");
+		System.out.println();
+		System.out.println("Enter the choice:");
+		int choice = sc.nextInt();
+		
+		switch(choice) {
+		case 1:
+			//getAllStudent();
+			break;
+		case 2:
+			//addStudents(sc);
+			break;
+		case 3:
+			//updateStudent(sc);
+			break;
+		case 4:
+			//deleteStudent(sc);
+			break;
+		default:
+			//System.out.println("Wrong Choice");
+		}
+	
+}

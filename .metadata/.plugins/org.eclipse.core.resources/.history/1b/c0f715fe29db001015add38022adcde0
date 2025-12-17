@@ -1,0 +1,5 @@
+package com.sunbeam.quiz.entity;
+
+public class Student {
+
+}

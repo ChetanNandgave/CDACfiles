@@ -1,0 +1,71 @@
+package com.sunbeam;
+import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class PracticeProgram {
+	
+	Scanner sc=new Scanner(System.in);
+	
+	private static final String URL="jdbc:mysql://localhost:3306/internship_db";
+	private static final String USERNAME="root";
+	private static final String PASSWORD="manager";
+	
+	public static Connection getConnection() throws SQLException{
+		return DriverManager.getConnection(URL,USERNAME,PASSWORD);
+	}
+	
+	public static void getAllStudent() {
+		String sql="SELECT rollno,name,email,course FROM students";
+		try {
+		Connection connection=getConnection();
+		PreparedStatement getallstudent=connection.prepareStatement(sql);
+		ResultSet rs=getallstudent.executeQuery();
+		while(rs.next()) {
+			int rollno=rs.getInt(1);
+			String name=rs.getString(2);
+			String email=rs.getString(3);
+			String course=rs.getString(4);
+			System.out.println(rollno+"-"+name+"-"+email+"-"+course);
+		}
+		connection.close();
+		getallstudent.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		}
+	
+	public static void addStudents(Scanner sc) {
+		System.out.println("Enter Student name:");
+		String name=sc.nextLine();
+		System.out.println("Enter Student email:");
+		String email=sc.nextLine();
+		System.out.println("Enter Student Course:");
+		String course=sc.nextLine();
+		
+		String sql="INSERT INTO students(name,email,course) VALUES(?,?,?)";
+		try {
+			Connection connection=getConnection();
+			PreparedStatement insertStatement=connection.prepareStatement(sql);
+			insertStatement.setString(1, name);
+			insertStatement.setString(2, email);
+			insertStatement.setString(3, course);
+			insertStatement.executeUpdate();
+			connection.close();
+			insertStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		getAllStudent();
+	}
+
+}

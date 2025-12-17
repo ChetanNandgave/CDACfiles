@@ -1,0 +1,44 @@
+package com.sunbeam;
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Program01 {
+	private static final String URL="jdbc:mysql://localhost:3306/internship_db";
+	private static final String USERNAME="root";
+	private static final String PASSWORD="manager";
+	
+	public static Connection getConnection() throws SQLException{
+		return DriverManager.getConnection(URL,USERNAME,PASSWORD);
+	}
+	//select
+	public static void getAllStudents() {
+		String sql="SELECT*FROM students";
+		Connection connection=getConnection();
+		PreparedStatement selectStatement=connection.prepareStatement(sql);
+	}
+	//insert
+	public static void addStudent(){
+		
+	}
+	//update
+	public static void updateStudent(){
+		
+	}
+	//delete
+	public static void deleteStudent(){
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//socket connection between database and java
+		
+	}
+	
+
+}
+
