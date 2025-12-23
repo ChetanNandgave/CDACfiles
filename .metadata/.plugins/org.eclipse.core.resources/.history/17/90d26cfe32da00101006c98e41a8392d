@@ -1,7 +1,0 @@
-package com.sunbeam.quiz.model;
-
-public class Quiz {
-	public int quizId;
-	public String title;
-	public int creator_id;
-}

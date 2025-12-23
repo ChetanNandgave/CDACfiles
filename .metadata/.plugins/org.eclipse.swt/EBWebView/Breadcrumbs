@@ -40,3 +40,4 @@
 0:00:40 Tab3 StartNav7 #typed
 0:00:40 Tab3 FinishNav7
 0:00:40 Tab3 PageLoad
+0:20:10 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
