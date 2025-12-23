@@ -1,13 +1,10 @@
 INDEX VERSION 1.134+D:\Java Full ocurse\CDACfiles\.metadata\.plugins\org.eclipse.jdt.core
-3380705583.index
-4131680302.index
 3545546390.index
-1867325844.index
-1189721867.index
 1865797976.index
-1351100565.index
-2888233541.index
-4034571566.index
-586075558.index
-2506192191.index
 2168668344.index
+2506192191.index
+1867325844.index
+4034571566.index
+4131680302.index
+2281090942.index
+2901247292.index
